@@ -13,8 +13,9 @@ import time
 
 FORWARD=11
 REVERSE=13
-REED_OPEN=15
-REED_CLOSE=19
+REED_OPEN=19
+REED_CLOSE=15
+LOCK_ENGAGE=9
 
 def setup():
     GPIO.setmode(GPIO.BOARD)
@@ -35,7 +36,7 @@ def close():
     print('%s : DOOR Closing...' % (datetime.datetime.now()))
     GPIO.output(REVERSE, GPIO.HIGH)
     while GPIO.input(REED_CLOSE):
-        time.sleep(5)
+        time.sleep(LOCK_ENGAGE)
     print('%s : DOOR Closed!' % (datetime.datetime.now()))
     GPIO.output(REVERSE, GPIO.LOW)
 
