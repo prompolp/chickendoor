@@ -39,12 +39,12 @@ def close():
     print('%s : DOOR Closed!' % (datetime.datetime.now()))
     GPIO.output(REVERSE, GPIO.LOW)
 
-def forward(seconds)
+def forward(seconds):
     GPIO.output(FORWARD, GPIO.HIGH)
     time.sleep(seconds)
     GPIO.output(FORWARD, GPIO.LOW)
     
-def reverse(seconds)
+def reverse(seconds):
     GPIO.output(REVERSE, GPIO.HIGH)
     time.sleep(seconds)
     GPIO.output(REVERSE, GPIO.LOW)
