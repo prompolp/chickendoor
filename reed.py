@@ -10,8 +10,8 @@ import time
 import RPi.GPIO as GPIO
 import datetime
 
-GPIO.setmode(io.BOARD)
-door_pin = 15
+GPIO.setmode(GPIO.BOARD)
+door_pin = 19
 
 GPIO.setup(door_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # activate input with PullUp
 

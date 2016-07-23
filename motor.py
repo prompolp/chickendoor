@@ -23,8 +23,10 @@ def reverse(x):
     sleep(x)
     GPIO.output(11, GPIO.LOW)
 
-forward(3)
-sleep(0.5)
-reverse(1)
+duration=18
+
+forward(duration)
+sleep(5)
+reverse(duration-2)
 
 GPIO.cleanup()
