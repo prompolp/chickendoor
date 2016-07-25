@@ -24,7 +24,12 @@ def setup():
     GPIO.setup(REED_OPEN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     GPIO.setup(REED_CLOSE, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
+def cleanup():
+    GPIO.cleanup()
+
 def open():
+    if door.isOpen():
+	return
     print('%s : DOOR Opening...' % (datetime.datetime.now()))
     GPIO.output(FORWARD, GPIO.HIGH)
     while GPIO.input(REED_OPEN):
@@ -32,7 +37,18 @@ def open():
     print('%s : DOOR Opened!' % (datetime.datetime.now()))
     GPIO.output(FORWARD, GPIO.LOW)
 
+def isOpen():
+    if not GPIO.input(REED_OPEN):
+        print('%s : DOOR Open!' % datetime.datetime.now())
+
+def forward(seconds):
+    GPIO.output(FORWARD, GPIO.HIGH)
+    time.sleep(seconds)
+    GPIO.output(FORWARD, GPIO.LOW)
+    
 def close():
+    if door.isClosed():
+        return
     print('%s : DOOR Closing...' % (datetime.datetime.now()))
     GPIO.output(REVERSE, GPIO.HIGH)
     while GPIO.input(REED_CLOSE):
@@ -40,15 +56,11 @@ def close():
     print('%s : DOOR Closed!' % (datetime.datetime.now()))
     GPIO.output(REVERSE, GPIO.LOW)
 
-def forward(seconds):
-    GPIO.output(FORWARD, GPIO.HIGH)
-    time.sleep(seconds)
-    GPIO.output(FORWARD, GPIO.LOW)
-    
+def isClosed():
+    if not GPIO.input(REED_CLOSE):
+        print('%s : DOOR Closed!' % datetime.datetime.now())
+
 def reverse(seconds):
     GPIO.output(REVERSE, GPIO.HIGH)
     time.sleep(seconds)
     GPIO.output(REVERSE, GPIO.LOW)
-
-def cleanup():
-    GPIO.cleanup()
