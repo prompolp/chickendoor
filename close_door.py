@@ -8,6 +8,4 @@ Python source code - replace this with a description of the code and write the c
 
 import door
 
-door.setup()
 door.close()
-door.cleanup()

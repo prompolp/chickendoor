@@ -41,13 +41,16 @@ def open():
     if isOpen():
         return
 
+
     print ('%s : DOOR Opening...') % datetime.datetime.now()
+    setup()
 
     GPIO.output(PIN_MOTOR_FORWARD, GPIO.HIGH)
     while GPIO.input(PIN_SWITCH_DOOROPEN_POSITION):
         time.sleep(1.5)
     GPIO.output(PIN_MOTOR_FORWARD, GPIO.LOW)
 
+    cleanup()
     print ('%s : DOOR Opened!') % datetime.datetime.now()
 
 
@@ -57,12 +60,14 @@ def close():
         return
 
     print ('%s : DOOR Closing...') % datetime.datetime.now()
+    setup()
 
     GPIO.output(PIN_MOTOR_REVERSE, GPIO.HIGH)
     while GPIO.input(PIN_SWITCH_DOORCLOSE_POSITION):
         time.sleep(LOCK_ENGAGE_TIME)
     GPIO.output(PIN_MOTOR_REVERSE, GPIO.LOW)
 
+    cleanup()
     print ('%s : DOOR Closed!') % datetime.datetime.now()
 
 
